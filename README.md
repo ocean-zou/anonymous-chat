@@ -1,3 +1,5 @@
 # anonymous-chat
 
-```use node index.js to start```
+### Please use the following command to start the application:
+```bash
+node index.js
