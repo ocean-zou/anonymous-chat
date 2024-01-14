@@ -91,7 +91,7 @@
     <form id="form" action="">
       <input id="input" autocomplete="off" placeholder="Enter your message" />
       <button>Send</button>
-      <button id="toggle-btn">Click me first</button>
+      <button id="toggle-btn">Need hide? click me first</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -109,7 +109,7 @@
           toggleButton.innerText = "Show";
           socket.disconnect();
         } else {
-          toggleButton.innerText = "Click me first";
+          toggleButton.innerText = "Need hide? click me first";
           socket.connect();
         }
       });
@@ -124,29 +124,23 @@
           sendMessage();
         }
       });
+
       const generatedUsername =
         localStorage.getItem("generatedUsername") || generateUniqueUser();
 
       function generateUniqueUser() {
-        // 检查 localStorage 中是否已经存在用户名
         const storedUsername = localStorage.getItem("generatedUsername");
-
         if (storedUsername) {
-          // 如果已存在，直接返回
           return storedUsername;
         } else {
-          // 生成新用户名
           const timestamp = Date.now().toString();
           const lastFourDigits = timestamp.slice(-4);
           const generatedUsername = "User" + lastFourDigits;
-
-          // 将用户名保存到 localStorage
           localStorage.setItem("generatedUsername", generatedUsername);
-
           return generatedUsername;
         }
       }
-      const user = generateUniqueUser();
+
       function sendMessage() {
         if (input.value.trim() !== "") {
           const isAnonymous = anonymousSelect.value === "true";
